@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="content">
-        <div id="labels">
-            <form action="display.php" method="get">
-                <label>Product Description: </label>
-                <input type="text" name="product description"/><br />
-                <label>List Price: </label>
-                <input type="text" name="list_price"/><br />
-                <label>Discount Percentage: </label>
-                <input type="text" name="discount percentage"/><br />
-            </form> 
-        </div>
-        <div id="buttons">
-            <label>&nbsp;</label>
-            <input type="submit" value="Calculate Discount"/>
-        </div> 
+    <div class="content">
+        <h1>Product Discount Calculator</h1>
+            <div class="data">
+                <form action="display.php" method="post">
+                    <label>Product Description: </label>
+                    <input type="text" name="product_description"/><br />
+                    <label>List Price: </label>
+                    <input type="text" name="list_price"/><br />
+                    <label>Discount Percentage: </label>
+                    <input type="text" name="discount_percentage"/><br />
+            </div>
+            <div class="button">
+                <label>&nbsp;</label>
+                <input type="submit" value="Calculate Discount"/>                
+            </div> 
+        </form>
     </div> 
 </body>
 </html>
