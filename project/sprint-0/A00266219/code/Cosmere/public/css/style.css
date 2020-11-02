@@ -1,0 +1,96 @@
+html, body, head {
+    padding: 0;
+    margin: 0;
+    background-color: #282828;
+    color: black;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+}
+
+.nav {
+    width: 100%;
+    min-width: 1200px;
+    min-height: 80px;
+    display: flex;
+    background-color: #b94949;
+    /*
+    opacity: 0.5;
+    position: fixed;
+    */
+}
+
+.logo {
+    width: 30%;
+}
+
+.menu {
+    width:45%;
+}
+
+.profile {
+    width:25%;
+    display: flex;
+}
+
+.move {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo-icon {
+    float: right;
+    width: 30%;
+}
+
+.nav > .logo > .logo-icon > a > img {
+    width: 8%;
+    margin-top: 10px;
+    min-height: 60px;
+    min-width: 60px;
+}
+
+.menu > .move > .button {
+    padding-top: 30px;
+    width:5%;
+    height: 100%;
+    padding-right: 5%;
+    min-width: 75px;
+    text-align: center;
+}
+
+.profile > .button {
+    padding-top: 30px;
+    width:50%;
+    height: 100%;
+}
+
+.profile > .avatar > img {
+    border-radius: 50%;
+    height: 40px;
+}
+
+.profile > .avatar {
+    padding-top: 20px;
+    width: 10%;
+    min-width: 50px;
+}
+
+.container {
+    width: 100%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+a:visited {
+    color: inherit;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
