@@ -1,0 +1,131 @@
+var rootURL = "";
+var toggle = false;
+var id = 1;
+var current_series = "";
+var current_book = "";
+var series = new Array();
+var index = 0;
+
+function findAll(){
+    $.ajax({
+        type: 'GET',
+        url:rootURL + "books",
+        dataType:"json",
+        success: renderList
+    });
+}
+
+function findOne(){
+    $.ajax({
+        type: 'GET',
+        url:rootURL + "book/" + id,
+        dataType:"json",
+        success: showOne
+    });
+}
+
+function findSeries(){
+    $.ajax({
+        type: 'GET',
+        url:rootURL + "books",
+        dataType:"json",
+        success: getSeries
+    });
+}
+
+function showOne(data)
+{
+    current_series = data[0].series;
+    current_book = data[0].name;
+    $("#book-title").text(data[0].series);
+    $('#book-large-image').attr("src","images/" + data[0].image + "");
+    $('#book-header').html(data[0].name + "<br>by&nbsp;" + data[0].author);
+    $('#isbn').html("ISBN: " + data[0].ISBN);
+    $('#blurb').html(data[0].blurb);
+    $('#pov').html("Main Character: " +data[0].pov_character);
+    $('#word-count').html("Word Count: " + data[0].word_count);
+    $('#pages').html("Pages: " + data[0].pages);
+    findSeries();
+}
+
+function getSeries(data) 
+{
+    $.each(data,function(index,book) {
+        if(current_series === data[index].series && data[index].name != current_book)
+        {
+            series.push(data[index]);
+        }
+    });
+    $("#series-1").attr("src","images/" + series[0].image + ""); 
+    $("#series-2").attr("src","images/" + series[1].image + "");  
+    $("#series-3").attr("src","images/" + series[2].image + "");   
+}
+
+function moveSeriesRight() {
+    while(index < series.length - 2)
+    {
+        $("#series-1").attr("src","images/" + series[index].image + ""); 
+        $("#series-2").attr("src","images/" + series[index+1].image + "");  
+        $("#series-3").attr("src","images/" + series[index+2].image + "");  
+        index = index + 1;
+        break; 
+    }
+}
+
+function moveSeriesLeft() {
+    while(index > 1)
+    {
+        $("#series-1").attr("src","images/" + series[index - 2].image + ""); 
+        $("#series-2").attr("src","images/" + series[index - 1].image + "");  
+        $("#series-3").attr("src","images/" + series[index].image + "");  
+        index = index - 1;
+        break; 
+    }
+}
+
+function renderList(data){
+    $('#row').append("<div id=\"row\">");
+    $.each(data,function(index,book) {
+        console.log(book.book_id)
+        $('#row').append(
+        "<button type=\"button\" " + "onclick=\"show_all(this.id)\"" + 
+        "id=\"" + book.book_id + "\">" +
+        "<div class=\"column\">" + 
+        "<img src=\"images/" + book.image + "\">" +
+        "</div></button>" );
+    });
+    $('#row').append("</div>");
+}
+
+function profile_menu() {
+    if(!toggle)
+    {
+        $("#change-icon").removeClass("fas fa-chevron-down");
+        $("#change-icon").addClass('fas fa-chevron-up');
+        toggle = true;
+    }
+    else
+    {
+        $("#change-icon").removeClass("fas fa-chevron-up");
+        $("#change-icon").addClass('fas fa-chevron-down');
+        toggle = false;
+    }
+}
+
+function move_left() {
+    $('#series-1').src("images/\"" + data[0].image + "\"");
+    $('#series-2').src("images/\"" + data[1].image + "\"");
+    $('#series-3').src("images/\"" + data[2].image + "\"");
+}
+
+function show_all(this_id) {
+    $("#container").html("");
+    $("#container").load("focused.html");
+    id = this_id;
+    findOne(); 
+}
+
+$(document).ready(function(){
+    //$("#container").load("focused.html"); 
+    findAll();
+});
