@@ -4,6 +4,7 @@ var id = 1;
 var current_series = "";
 var current_book = "";
 var series = new Array();
+var updated_series = new Array();
 var index = 0;
 
 function findAll(){
@@ -11,7 +12,7 @@ function findAll(){
         type: 'GET',
         url:rootURL + "books",
         dataType:"json",
-        success: renderList
+        success: showList
     });
 }
 
@@ -24,12 +25,12 @@ function findOne(){
     });
 }
 
-function findSeries(){
+function deleteBook(){
     $.ajax({
-        type: 'GET',
-        url:rootURL + "books",
+        type: 'DELETE',
+        url:rootURL + "book/" + id,
         dataType:"json",
-        success: getSeries
+        success: showList
     });
 }
 
@@ -45,28 +46,43 @@ function showOne(data)
     $('#pov').html("Main Character: " +data[0].pov_character);
     $('#word-count').html("Word Count: " + data[0].word_count);
     $('#pages').html("Pages: " + data[0].pages);
-    findSeries();
+    getSeries(series);
 }
 
-function getSeries(data) 
+function getSeries(series) 
 {
-    $.each(data,function(index,book) {
-        if(current_series === data[index].series && data[index].name != current_book)
+    updated_series = [];
+    $.each(series,function(index,book) {
+        if(current_series === series[index].series && series[index].name != current_book)
         {
-            series.push(data[index]);
+            console.log(series[index].name);
+            updated_series.push(series[index]);
         }
     });
-    $("#series-1").attr("src","images/" + series[0].image + ""); 
-    $("#series-2").attr("src","images/" + series[1].image + "");  
-    $("#series-3").attr("src","images/" + series[2].image + "");   
+    $("#image-1").attr("id",updated_series[0].book_id); 
+    $("#image-2").attr("id",updated_series[1].book_id); 
+    $("#image-3").attr("id",updated_series[2].book_id);
+    
+    //console.log(series[0].image);
+    //console.log(series[1].image);
+    //console.log(series[0].image);
+
+    $("#series-1").attr("src","images/" + updated_series[0].image + ""); 
+    $("#series-2").attr("src","images/" + updated_series[1].image + "");  
+    $("#series-3").attr("src","images/" + updated_series[2].image + "");   
 }
 
 function moveSeriesRight() {
-    while(index < series.length - 2)
+    while(index < updated_series.length - 2)
     {
-        $("#series-1").attr("src","images/" + series[index].image + ""); 
-        $("#series-2").attr("src","images/" + series[index+1].image + "");  
-        $("#series-3").attr("src","images/" + series[index+2].image + "");  
+        //console.log(series[0].book_id);
+        $("#" + updated_series[2].book_id).attr("id",updated_series[3].book_id); 
+        $("#" + updated_series[1].book_id).attr("id",updated_series[2].book_id); 
+        $("#" + updated_series[0].book_id).attr("id",updated_series[1].book_id); 
+
+        $("#series-1").attr("src","images/" + updated_series[index].image + ""); 
+        $("#series-2").attr("src","images/" + updated_series[index+1].image + "");  
+        $("#series-3").attr("src","images/" + updated_series[index+2].image + "");  
         index = index + 1;
         break; 
     }
@@ -75,20 +91,24 @@ function moveSeriesRight() {
 function moveSeriesLeft() {
     while(index > 1)
     {
-        $("#series-1").attr("src","images/" + series[index - 2].image + ""); 
-        $("#series-2").attr("src","images/" + series[index - 1].image + "");  
-        $("#series-3").attr("src","images/" + series[index].image + "");  
+        $("#" + updated_series[3].book_id).attr("id",updated_series[2].book_id); 
+        $("#" + updated_series[2].book_id).attr("id",updated_series[1].book_id); 
+        $("#" + updated_series[1].book_id).attr("id",updated_series[0].book_id);  
+        $("#series-1").attr("src","images/" + updated_series[index - 2].image + ""); 
+        $("#series-2").attr("src","images/" + updated_series[index - 1].image + "");  
+        $("#series-3").attr("src","images/" + updated_series[index].image + "");  
         index = index - 1;
         break; 
     }
 }
 
-function renderList(data){
+function showList(data){
+    series = [];
     $('#row').append("<div id=\"row\">");
     $.each(data,function(index,book) {
-        console.log(book.book_id)
+        series.push(book);
         $('#row').append(
-        "<button type=\"button\" " + "onclick=\"show_all(this.id)\"" + 
+        "<button type=\"button\" " + "onclick=\"showAll(this.id)\"" + 
         "id=\"" + book.book_id + "\">" +
         "<div class=\"column\">" + 
         "<img src=\"images/" + book.image + "\">" +
@@ -118,14 +138,21 @@ function move_left() {
     $('#series-3').src("images/\"" + data[2].image + "\"");
 }
 
-function show_all(this_id) {
+function showAll(this_id) {
     $("#container").html("");
-    $("#container").load("focused.html");
+    $("#container").load("focus_book.html");
     id = this_id;
     findOne(); 
 }
 
+function home() {
+    $("#container").html("");
+    $("#container").load("gallery.html");
+    findAll(); 
+}
+
 $(document).ready(function(){
-    //$("#container").load("focused.html"); 
+    $("#container").html("");
+    $("#container").load("gallery.html");
     findAll();
 });

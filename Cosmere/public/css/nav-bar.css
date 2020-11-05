@@ -57,7 +57,7 @@ html, body, head {
     width: 30%;
 }
 
-.logo > .logo-icon > a > img {
+.logo > .logo-icon > button > img {
     max-height: 80px;
     max-width: 80px;
     display: flex;
