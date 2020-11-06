@@ -32,7 +32,7 @@ function deleteBook(){
         type: 'DELETE',
         url:rootURL + "book/" + id,
         dataType:"json",
-        success: showList
+        success: findAll
     });
 }
 
@@ -41,7 +41,7 @@ function showOne(data)
     current_series = data[0].series;
     current_book = data[0].name;
     $("#book-title").text(data[0].series);
-    $('#book-large-image').attr("src","images/" + data[0].image + "");
+    $('#image-large').attr("src","images/" + data[0].image + "");
     $('#book-header').html(data[0].name + "<br>by&nbsp;" + data[0].author);
     $('#isbn').html("ISBN: " + data[0].ISBN);
     $('#blurb').html(data[0].blurb);
@@ -62,14 +62,29 @@ function getSeries(series)
                 updated_series.push(series[index]);
             }
         });
+        if(updated_series.length >= 3)
+        {
+            $("#image-1").attr("id",updated_series[0].book_id); 
+            $("#image-2").attr("id",updated_series[1].book_id); 
+            $("#image-3").attr("id",updated_series[2].book_id);
 
-        $("#image-1").attr("id",updated_series[0].book_id); 
-        $("#image-2").attr("id",updated_series[1].book_id); 
-        $("#image-3").attr("id",updated_series[2].book_id);
+            $("#series-1").attr("src","images/" + updated_series[0].image + ""); 
+            $("#series-2").attr("src","images/" + updated_series[1].image + "");  
+            $("#series-3").attr("src","images/" + updated_series[2].image + "");
+        } 
+        else
+        {
+            var random = Math.floor(Math.random() * series.length);
+            var random2 = Math.floor(Math.random() * series.length);
+            var random3 = Math.floor(Math.random() * series.length);
+            $("#image-1").attr("id",series[random].book_id); 
+            $("#image-2").attr("id",series[random2].book_id); 
+            $("#image-3").attr("id",series[random3].book_id);
 
-        $("#series-1").attr("src","images/" + updated_series[0].image + ""); 
-        $("#series-2").attr("src","images/" + updated_series[1].image + "");  
-        $("#series-3").attr("src","images/" + updated_series[2].image + "");   
+            $("#series-1").attr("src","images/" + series[random].image + ""); 
+            $("#series-2").attr("src","images/" + series[random2].image + "");  
+            $("#series-3").attr("src","images/" + series[random3].image + "");
+        }  
     });
 }
 
@@ -139,11 +154,15 @@ function profile_menu() {
     }
 }
 
-
+function delete_current() {
+    $("#container").html("");
+    $("#container").load("gallery.html");
+    deleteBook();
+}
 
 function getOne(this_id) {
     $("#container").html("");
-    $("#container").load("focus_book.html");
+    $("#container").load("focus.html");
     id = this_id;
     findOne();
 }

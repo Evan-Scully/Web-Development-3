@@ -62,3 +62,9 @@ button{
 button:focus {
     outline:0;
 }
+
+#delete {
+    color: black;
+    background-color: grey;
+    min-width: 30%;
+}

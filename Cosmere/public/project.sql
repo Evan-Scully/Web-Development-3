@@ -36,7 +36,11 @@ INSERT INTO book VALUES ( null, 'The Shadow Rising', 'Robert Jordan', '1007', '3
 INSERT INTO book VALUES ( null, 'The Dragon Reborn', 'Robert Jordan', '704', '215,760', 'The Wheel of Time', 'Rand AlThor','Ebook-4.jpg','','Able to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand alThor knows only that he must face the Dark One. But how?'); 
 INSERT INTO book VALUES ( null, 'The Fires of Heaven', 'Robert Jordan', '992', '317,115', 'The Wheel of Time', 'Perrin Aybara','Ebook-5.jpg','','');
 INSERT INTO book VALUES ( null, 'Lord of Chaos', 'Robert Jordan', '1011', '361,340', 'The Wheel of Time', 'Egwene AlVere','Ebook-6.jpg','','');
-INSERT INTO book VALUES ( null, 'A Crown of Swords', 'Robert Jordan', '896', '264,915', 'The Wheel of Time', 'Egwene AlVere','Ebook-7.jpeg','','');         
+INSERT INTO book VALUES ( null, 'A Crown of Swords', 'Robert Jordan', '896', '264,915', 'The Wheel of Time', 'Egwene AlVere','Ebook-7.jpeg','','');   
+
+INSERT INTO book VALUES ( null, 'The Fellowship of the Ring', 'JRR Tolkein', '480', '187,790', 'The Lord of the Rings', 'Frodo Baggins','LoTR1.jpg','','');
+INSERT INTO book VALUES ( null, 'The Two Towers', 'JRR Tolkein', '416', '145,000', 'The Lord of the Rings', 'Samwise Gamgee','LoTR2.jpg','','');
+INSERT INTO book VALUES ( null, 'The Return of the King', 'JRR Tolkein', '512', '125,135', 'The Lord of the Rings', 'Aragorn','LoTR3.jpg','','');      
 
 INSERT INTO user VALUES ( 'evan_scully', 'evan scully', 'sheogorath99?', 'Avatar.jpg');
 INSERT INTO user VALUES ( 'john_doe', 'john doe', 'Password2', 'Avatar2.jpg');
