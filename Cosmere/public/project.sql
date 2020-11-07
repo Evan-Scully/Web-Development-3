@@ -22,13 +22,7 @@ CREATE TABLE user (
     name VARCHAR(30) NOT NULL,
     password VARCHAR(20) NOT NULL,
     image VARCHAR(30) NOT NULL,
-	PRIMARY KEY(username));
-    
-INSERT INTO book VALUES ( null, 'The Way of Kings', 'Brandon Sanderson', '1280', '398,460', 'The Stormlight Archive', 'Kaladin','TheWayOfKingsUK.jpg','978-0575097360','Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike.');
-INSERT INTO book VALUES ( null, 'Words Of Radiance', 'Brandon Sanderson',  '1328', '419,485', 'The Stormlight Archive', 'Shallan Davar','WordsOfRadianceUK.jpg','978-0575093317','Brilliant but troubled Shallan strives along a parallel path. Despite being broken in ways she refuses to acknowledge, she bears a terrible burden: to somehow prevent the return of the legendary Voidbringers and the civilization-ending Desolation that will follow.');
-INSERT INTO book VALUES ( null, 'Oathbringer', 'Brandon Sanderson', '1248', '481,980', 'The Stormlight Archive', 'Dalinar Kholin','Oathbringer.jpg','978-0765365293','Dalinar Kholins Alethi armies won a fleeting victory at a terrible cost: The enemy Parshendi summoned the violent Everstorm, which now sweeps the world with destruction, and in its passing awakens the once peaceful and subservient parshmen to the horror of their millennia-long enslavement by humans.');    
-INSERT INTO book VALUES ( null, 'Rhythm of War', 'Brandon Sanderson', '1120', '200,450', 'The Stormlight Archive', 'Venli','RhythmOfWar.jpg' ,'978-0575093386',''); 
-INSERT INTO book VALUES ( null, 'Edgedancer', 'Brandon Sanderson', '272', '55,535', 'The Stormlight Archive', 'Lift','EdgedancerUK.jpg' ,'978-1473225039','');    
+	PRIMARY KEY(username));   
  
 INSERT INTO book VALUES ( null, 'The Eye of the World', 'Robert Jordan','780', '310,910', 'The Wheel of Time', 'Rand AlThor','Ebook-1.png','','The Wheel of Time turns and Ages come and go, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again.');     
 INSERT INTO book VALUES ( null, 'The Great Hunt', 'Robert Jordan', '706', '260,353', 'The Wheel of Time', 'Mat Cauthon','Ebook-2.png','','The Forsaken are loose, the Horn of Valere has been found, and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled – but Rand al’Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.');
@@ -40,7 +34,13 @@ INSERT INTO book VALUES ( null, 'A Crown of Swords', 'Robert Jordan', '896', '26
 
 INSERT INTO book VALUES ( null, 'The Fellowship of the Ring', 'JRR Tolkein', '480', '187,790', 'The Lord of the Rings', 'Frodo Baggins','LoTR1.jpg','','');
 INSERT INTO book VALUES ( null, 'The Two Towers', 'JRR Tolkein', '416', '145,000', 'The Lord of the Rings', 'Samwise Gamgee','LoTR2.jpg','','');
-INSERT INTO book VALUES ( null, 'The Return of the King', 'JRR Tolkein', '512', '125,135', 'The Lord of the Rings', 'Aragorn','LoTR3.jpg','','');      
+INSERT INTO book VALUES ( null, 'The Return of the King', 'JRR Tolkein', '512', '125,135', 'The Lord of the Rings', 'Aragorn','LoTR3.jpg','','');     
+   
+INSERT INTO book VALUES ( null, 'The Way of Kings', 'Brandon Sanderson', '1280', '398,460', 'The Stormlight Archive', 'Kaladin','TheWayOfKingsUK.jpg','978-0575097360','Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike.');
+INSERT INTO book VALUES ( null, 'Words Of Radiance', 'Brandon Sanderson',  '1328', '419,485', 'The Stormlight Archive', 'Shallan Davar','WordsOfRadianceUK.jpg','978-0575093317','Brilliant but troubled Shallan strives along a parallel path. Despite being broken in ways she refuses to acknowledge, she bears a terrible burden: to somehow prevent the return of the legendary Voidbringers and the civilization-ending Desolation that will follow.');
+INSERT INTO book VALUES ( null, 'Oathbringer', 'Brandon Sanderson', '1248', '481,980', 'The Stormlight Archive', 'Dalinar Kholin','Oathbringer.jpg','978-0765365293','Dalinar Kholins Alethi armies won a fleeting victory at a terrible cost: The enemy Parshendi summoned the violent Everstorm, which now sweeps the world with destruction, and in its passing awakens the once peaceful and subservient parshmen to the horror of their millennia-long enslavement by humans.');    
+INSERT INTO book VALUES ( null, 'Rhythm of War', 'Brandon Sanderson', '1120', '200,450', 'The Stormlight Archive', 'Venli','RhythmOfWar.jpg' ,'978-0575093386',''); 
+INSERT INTO book VALUES ( null, 'Edgedancer', 'Brandon Sanderson', '272', '55,535', 'The Stormlight Archive', 'Lift','EdgedancerUK.jpg' ,'978-1473225039','');   
 
 INSERT INTO user VALUES ( 'evan_scully', 'evan scully', 'sheogorath99?', 'Avatar.jpg');
 INSERT INTO user VALUES ( 'john_doe', 'john doe', 'Password2', 'Avatar2.jpg');

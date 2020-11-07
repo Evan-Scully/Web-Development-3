@@ -9,6 +9,7 @@ var updated_series = new Array();
 
 var index = 0;
 
+// Gets an json file with all the books
 function findAll(){
     $.ajax({
         type: 'GET',
@@ -18,6 +19,7 @@ function findAll(){
     });
 }
 
+// Finds one book based on id
 function findOne(){
     $.ajax({
         type: 'GET',
@@ -27,6 +29,7 @@ function findOne(){
     });
 }
 
+// Deletes a book based on id
 function deleteBook(){
     $.ajax({
         type: 'DELETE',
@@ -36,6 +39,13 @@ function deleteBook(){
     });
 }
 
+//Clears the container where all the information goes
+function clear_page(html) {
+    $("#container").html("");
+    $("#container").load(html);
+}
+
+// Edits a page with one book on it
 function showOne(data)
 {
     current_series = data[0].series;
@@ -51,6 +61,7 @@ function showOne(data)
     getSeries(series);
 }
 
+// Creates the more from the author or chooses random books for it
 function getSeries(series) 
 {
     jQuery(function(){
@@ -62,6 +73,7 @@ function getSeries(series)
                 updated_series.push(series[index]);
             }
         });
+        // If the series of books is more than 3 show the first books
         if(updated_series.length >= 3)
         {
             $("#image-1").attr("id",updated_series[0].book_id); 
@@ -72,11 +84,21 @@ function getSeries(series)
             $("#series-2").attr("src","images/" + updated_series[1].image + "");  
             $("#series-3").attr("src","images/" + updated_series[2].image + "");
         } 
+        // If the book only has 3 or less in the series pick 3 random books
         else
         {
             var random = Math.floor(Math.random() * series.length);
             var random2 = Math.floor(Math.random() * series.length);
+            while(random === random2)
+            {
+                random2 = Math.floor(Math.random() * series.length);
+            }
             var random3 = Math.floor(Math.random() * series.length);
+            while(random3 === random || random3 == random2)
+            {
+                random3 = Math.floor(Math.random() * series.length);
+            }
+
             $("#image-1").attr("id",series[random].book_id); 
             $("#image-2").attr("id",series[random2].book_id); 
             $("#image-3").attr("id",series[random3].book_id);
@@ -88,6 +110,7 @@ function getSeries(series)
     });
 }
 
+// Moves the more from the author right
 function moveSeriesRight() {
     jQuery(function(){
         if(index < updated_series.length - 3  && updated_series.length > 3)
@@ -103,6 +126,7 @@ function moveSeriesRight() {
     });
 }
 
+// Moves the more from the author left
 function moveSeriesLeft() {
     jQuery(function(){
         var flag = false;
@@ -124,6 +148,7 @@ function moveSeriesLeft() {
     });
 }
 
+// Creates the main page with all the books
 function showList(data){
     series = [];
     $('#row').append("<div id=\"row\">");
@@ -139,6 +164,7 @@ function showList(data){
     $('#row').append("</div>");
 }
 
+// Creates the profile icon and changes it
 function profile_menu() {
     if(!toggle)
     {
@@ -154,27 +180,36 @@ function profile_menu() {
     }
 }
 
+// Deletes a book and goes back to the main menu
 function delete_current() {
-    $("#container").html("");
-    $("#container").load("gallery.html");
+    clear_page("gallery.html");
     deleteBook();
 }
 
+// Usees the id to generate the Focus page
 function getOne(this_id) {
-    $("#container").html("");
-    $("#container").load("focus.html");
+    clear_page("focus.html");
     id = this_id;
     findOne();
 }
 
+// Returns home and refreshes the database
 function home() {
-    $("#container").html("");
-    $("#container").load("gallery.html");
+    clear_page("gallery.html");
     findAll(); 
 }
 
+// Generate the datatable
+function generateTable() {
+    clear_page("table.html");
+    $(document).ready(function(){
+        $('#dataTable').DataTable();
+    });
+      
+}
+
+// Loads the main page when the DOM is loaded
 $(document).ready(function(){
-    $("#container").html("");
-    $("#container").load("gallery.html");
+    clear_page("gallery.html");
     findAll();
 });
