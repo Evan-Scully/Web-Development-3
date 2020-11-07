@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <title>Library</title>
     
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="css\nav-bar.css"  type="text/css"/>
     <link rel="stylesheet" href="css\main.css"  type="text/css"/>
     <link rel="stylesheet" href="css\focused.css"  type="text/css"/>
@@ -35,7 +36,7 @@
             </div>
             <div class="menu">
                 <div class="move">
-                    <button class="button" id="info" onclick="generateTable()">Table</button>
+                    <button class="button" id="info" onclick="unHide()">Table</button>
                     <button class="button" id="help">Help</button>
                     <button class="button" id="download">Download</button>
                 </div>
@@ -49,6 +50,31 @@
         </div>
     </div>
     <div class="container" id="container">
+    </div>
+    <div class="container-fluid" id="table-hide">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Library Database</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Pages</th>
+                                    <th>Word Count</th>
+                                    <th>Series</th>
+                                    <th>POV</th>
+                                    <th>ISBN</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="footer">
         <div id="footer-bar">

@@ -7,7 +7,6 @@ html, body, head {
 
     /*TOP NAV BAR STICKY */
     padding-top: 40px;
-    
 }
 
 .nav {
@@ -18,7 +17,6 @@ html, body, head {
     background-color: rgba(77, 65, 65, 0.151);
     font-weight: bold;
     color: white;
-
     /*
     TOP NAV BAR STICKY 
     */
@@ -131,4 +129,24 @@ button:active {
     
 button:focus {
     outline:0;
+}
+
+@media screen and (max-width: 1200px) {
+    .nav {
+        width: 100%;
+        min-width: 0px;
+    }
+    #nav-bar {
+        width: 100%;
+        min-width: 0px;
+    }
+    .menu {
+        width:80%;
+    }
+    .menu > .move > button {
+        width: 25%;
+    }
+    .profile {
+        width:25%;
+    }
 }

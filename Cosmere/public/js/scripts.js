@@ -197,19 +197,49 @@ function getOne(this_id) {
 function home() {
     clear_page("gallery.html");
     findAll(); 
+    hideTable();
 }
 
 // Generate the datatable
 function generateTable() {
     clear_page("table.html");
-    $(document).ready(function(){
-        $('#dataTable').DataTable();
-    });
-      
+}
+
+// Unhides the dataTable
+function unHide()
+{
+    $("#container").html("");
+    var x = document.getElementById("table-hide");
+    if (x.style.display === "none") 
+    {
+      x.style.display = "block";
+    } 
+}
+
+// Hide table
+function hideTable() {
+    var x = document.getElementById("table-hide");
+    x.style.display = "none";
 }
 
 // Loads the main page when the DOM is loaded
 $(document).ready(function(){
     clear_page("gallery.html");
     findAll();
+    hideTable();
+    $('#dataTable').DataTable( {
+        ajax: {
+            url: rootURL + "books",
+            dataSrc: ''
+        },
+        columns: [
+            { data: "name" },
+            { data: "author" },
+            { data: "pages" },
+            { data: "word_count" },
+            { data: "series" },
+            { data: "pov_character" },
+            { data: "ISBN" }
+        ]
+    });
 });

@@ -7,8 +7,6 @@
     background-image: linear-gradient(43deg, #28c5a1 0%, #d10c10 46%, #FFCC70 100%);
     */
     background-color: rgba(223, 206, 206, 0.747);
-    padding-bottom: 60px;
-    padding-top: 20px;
     color: white;
 }
 
@@ -64,4 +62,33 @@
 
 .column {
     padding-bottom: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        min-width:unset;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .page > .gallery {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .gallery > #row > button {
+        width: 25%;
+        max-width: 300px;
+        min-width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+    } 
+
+    .gallery > #row > button > .column > img {
+        object-fit: cover;
+        height:320px;
+    }
+    .showcase {
+        display: none;
+    }
 }
