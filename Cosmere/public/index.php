@@ -78,11 +78,12 @@ $app->post('/book', function (Request $request, Response $response, $args) {
     $pages = $formData["pages"];
     $word_count = $formData["word_count"];
     $series = $formData["series"];
+    $isbn = $formData["isbn"];
     $pov_character = $formData["pov_character"];
     $image = $formData["image"];
 
-    $query = "INSERT INTO book (name, author, blurb, pages, word_count, series, pov_character, image)  
-    VALUES ('$name', '$author', '$blurb', '$pages', '$word_count', '$series', '$pov_character','$image')";
+    $query = "INSERT INTO book (name, author, blurb, pages, word_count, series, ISBN, pov_character, image)  
+    VALUES ('$name', '$author', '$blurb', '$pages', '$word_count', '$series','$pov_character', '$isbn', '$image')";
 
     $sql = $db->exec($query);
     
@@ -92,7 +93,7 @@ $app->post('/book', function (Request $request, Response $response, $args) {
 
 });
 
-// Update new book using x-www-form-urlencoded content type
+// Update book using x-www-form-urlencoded content type
 $app->put('/book/{id}', function (Request $request, Response $response, $args) {
 
     require_once('database.php');
@@ -106,11 +107,12 @@ $app->put('/book/{id}', function (Request $request, Response $response, $args) {
     $pages = $formData["pages"];
     $word_count = $formData["word_count"];
     $series = $formData["series"];
+    $isbn = $formData["isbn"];
     $pov_character = $formData["pov_character"];
     $image = $formData["image"];
 
-    $query = "UPDATE book set name = '$name', author = '$author',blurb = '$blurb', pages = '$pages',word_count = '$word_count', series = '$series',pov_character = '$pov_character', 
-    image = '$image' WHERE book_id = '$id'";
+    $query = "UPDATE book set name = '$name', author = '$author', pages = '$pages', blurb = '$blurb', word_count = '$word_count', series = '$series',pov_character = '$pov_character', ISBN = '$isbn',image = '$image'
+    WHERE book_id = '$id'";
     $sql = $db->exec($query);
 
     $response->getBody()->write(json_encode($sql));
@@ -208,13 +210,13 @@ try {
     if ($last_error && $last_error['type']==E_ERROR)
     {
         http_response_code(500);
-        include('php/500.php');
+        include('500.php');
         die();
     }
 
     // 404 Server Error
     http_response_code(404);
-    include('php/404.php');
+    include('404.php');
     die();
 
     

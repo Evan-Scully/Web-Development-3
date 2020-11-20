@@ -1,0 +1,104 @@
+
+<div class="page">
+    <div class="showcase-focus" id="showcase">
+        <div class="card">
+            <img class="card-img-top" id="image-large" src="" alt="Card image cap">
+            <div class="card-body">
+                <h5 id="book-title" class="card-title"></h5>
+            <button id="delete" onclick="delete_current()" class="btn btn-primary">Delete</button>
+            <button id="edit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
+            </div>
+        </div>
+    </div>
+    <div class="gallery-focus" id="gallery">
+        <div class="book-header" id="book-header">
+        </div>
+        <div class="book-information" id="isbn">  
+        </div>
+        <div class="book-information" id="blurb"> 
+        </div>
+        <div class="book-information" id="pov">
+        </div>
+        <div class="book-information" id="word-count">
+        </div>
+        <div class="book-information" id="pages">
+        </div>
+    </div>
+    <div class="series" id="series">
+        <div class="move-series">
+            <button type="button" class="button" onclick="moveSeriesLeft()">
+                <i class="fas fa-chevron-left" id="series-move-left"></i>
+            </button>
+        </div>
+        <button id="image-1" onclick="getOne(this.id)">
+            <img id="series-1" src="">
+        </button>
+        <button id="image-2" onclick="getOne(this.id)">
+            <img id="series-2" src="">
+        </button>
+        <button id="image-3" onclick="getOne(this.id)">
+            <img id="series-3" src="">
+        </button>
+        <button id="image-4" onclick="getOne(this.id)">
+            <img id="series-4" src="">
+        </button>
+        <div class="move-series">
+            <button type="button" class="button" onclick="moveSeriesRight()">
+                <i class="fas fa-chevron-right" id="series-move-right"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title justify-content-center">Edit Book</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="public/index.php">  
+
+                        <label for="title">Title</label><br>
+                        <input type="text" name="title" id="modal-name"><br>
+
+                        <label for="author">Author</label><br>
+                        <input type="text" name="author" id="modal-author"><br>
+
+                        <label for="ISBN">ISBN</label><br>
+                        <input type="text" name="isbn" id="modal-isbn"><br>
+
+                        <label for="main_character">Main Character</label><br>
+                        <input type="text" name="main_character" id="modal-pov"><br>
+
+                        <label for="word_count">Word Count</label><br>
+                        <input type="text" name="word_count" id="modal-words"><br>
+
+                        <label for="blurb">Blurb</label><br>
+                        <textarea type="text" name="blurb" id="modal-blurb" wrap="soft"></textarea><br>
+
+                         <label for="series">Series</label><br>
+                        <input type="text" name="series" id="modal-series"><br>
+
+                        <label for="pages">Pages</label><br>
+                        <input type="text" name="pages" id="modal-pages"><br>
+
+                        <label for="image">Image</label><br>
+                        <input type="text" name="image" id="modal-image"><br>
+                    </form>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="updateBook()">Save</button>
+                </div> 
+            </div>
+        </div>
+    </div>
+  
+</div>
+</div>
+    

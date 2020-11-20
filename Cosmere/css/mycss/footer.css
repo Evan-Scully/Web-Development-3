@@ -18,11 +18,11 @@
     width:20%;
     
 }
-#footer-logo > img{
+#footer-logo > button > img{
     max-height: 80px;
     max-width: 80px;
 }
-#Library {
+.library {
     width: 15%;
     font-size: 105%;
 }
@@ -42,4 +42,22 @@
 }
 #icons > .icon-holder {
     padding-left: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .footer {
+        width: 100%;
+        min-width: unset;
+    }
+    #footer-bar {
+        width: 100%;
+        min-width: unset;
+    }
+    .library {
+        width: 30%;
+        font-size: 105%;
+    }
+    #icons {
+        width: 10%;
+    }
 }
