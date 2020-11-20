@@ -1,0 +1,1 @@
+You'll have to change the uesrname and password for the database in the database.php file
