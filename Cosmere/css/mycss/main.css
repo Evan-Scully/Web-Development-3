@@ -169,15 +169,11 @@ html, body, head {
     
 }
 
-#myModal {
+#myModal, #editModal, #createModal {
     color: black;
     text-align: center;
 }
 
-#createModal {
-    color: black;
-    text-align: center;
-}
 
 #modal-blurb {
     width: 100%;

@@ -4,7 +4,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
-
 $app = AppFactory::create();
 
 $app->addBodyParsingMiddleware();
@@ -14,11 +13,9 @@ $app->setBasePath("/Cosmere/public");
 // The app has started working
 $app->get('/', function (Request $request, Response $response, $args) {
 
-    //$usernamePassword = $request->getHeader("Authorization");
-    //$decoded = base64_decode($usernamePassword[0]);
-
+    require_once('store.php');
     require_once('index.html');
-    //require_once('php/displaybooks.php');
+    
     $response->getBody()->write("");
     return $response;
 });

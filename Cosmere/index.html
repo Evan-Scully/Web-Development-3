@@ -10,7 +10,7 @@
     <!-- Font-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
-    
+
     <!-- css -->
     <link rel="stylesheet" href="css\mycss\nav-bar.css"  type="text/css"/>
     <link rel="stylesheet" href="css\mycss\main.css"  type="text/css"/>
@@ -59,9 +59,16 @@
             </div>
             <div class="profile">
                 <div class="avatar">
-                    <img src="images/Avatar.jpg">       
+                    <img id="avatar-img" src="">       
                 </div>
-                <button type="button" class="button" onclick="profile_menu()">Profile&nbsp;<i id="change-icon" class="fas fa-chevron-down"></i></button>
+                <button type="button"  data-toggle="dropdown" onclick="profile_menu()" id="navbarDropdown" class="nav-item dropdown">Profile&nbsp;<i id="change-icon" class="fas fa-chevron-down" ></i></button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item">Admin</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#editModal" onclick="findUser()">Edit</a>
+                    <a class="dropdown-item" id="user-name">A</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="public/logout.php">Logout</a>
+                    </div>
             </div>
         </div>
     </div>
@@ -162,6 +169,38 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title justify-content-center">Edit User</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="public/index.php">  
+                        <label for="username">Username</label><br>
+                        <input type="text" name="title" id="user-username" readonly><br>
+
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="modal-user-name"><br>
+
+                        <label for="password">Password</label><br>
+                        <input type="text" name="password" id="user-password"><br>
+
+                        <label for="Image">Image</label><br>
+                        <input type="text" name="image" id="user-image"><br>
+                    </form>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="updateUser()">Save</button>
+                </div> 
+            </div>
+        </div>
+    </div>
     <div class="footer">
         <div id="footer-bar">
             <div id="footer-logo">
@@ -175,7 +214,7 @@
                 <div class="footer-links"><a href="https://www.amazon.co.uk/">Amazon</a></div>
                 <div class="footer-links"><a href="https://www.easons.com/">Easons</a></div>
             </div>
-            <div class="library">
+            <div class="library" id="filler-link">
                 <div class="footer-header">Company</div>
                 <div class="footer-links">Info</div>
                 <div class="footer-links">About</div>

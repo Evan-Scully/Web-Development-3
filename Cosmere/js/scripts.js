@@ -6,10 +6,12 @@ var current_book = "";
 
 var series = new Array();
 var updated_series = new Array();
-
 var image = new Array();
 
 var index = 0;
+var name = getCookie("name");
+var avatar_img = getCookie("image");
+var username = getCookie("username");
 
 // Gets an json file with all the books
 function findAll(){
@@ -21,19 +23,35 @@ function findAll(){
     });
 }
 
+// Updates the profile from modal then pulls down the new data
+function updateProfile() {
+    var tokenString = localStorage.getItem("token");
+
+    //simple ajax call to our API
+    $.ajax({
+        method: "PUT",
+        url: rootURL + "user" + id,
+        headers: {
+            Authorization: tokenString
+        },
+        dataType:"json",
+        success: showList
+    });
+}
+
 // Add book
 function createBook() {
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
-		url: rootURL+ "book",
+		url: rootURL + "book",
 		dataType: "json",
 		data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
 			home();
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-			alert('addWine error: ' + textStatus);
+			alert('Book error: ' + textStatus);
 		}
 	});
 }
@@ -48,6 +66,17 @@ function findOne(){
     });
 }
 
+// Pulls user down based on username
+function findUser(){
+    $.ajax({
+        type: 'GET',
+        url:rootURL + "user/" + username,
+        dataType:"json",
+        success: findUserData
+    });
+}
+
+// Updates book from modal information
 function updateBook(){
     $.ajax({
 		type: 'PUT',
@@ -59,7 +88,24 @@ function updateBook(){
 			findOne();
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-			alert('updateWine error: ' + textStatus);
+			alert('updateBook error: ' + textStatus);
+		}
+	});
+}
+
+// Updates user from modal information
+function updateUser(){
+    $.ajax({
+		type: 'PUT',
+		contentType: 'application/json',
+		url: rootURL + "user/" + username,
+		dataType: "json",
+		data: formToJSONUser(),
+		success: function(data, textStatus, jqXHR){
+			findUser();
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('update user error: ' + textStatus);
 		}
 	});
 }
@@ -70,7 +116,7 @@ function deleteBook(){
         type: 'DELETE',
         url:rootURL + "book/" + id,
         dataType:"json",
-        success: findAll
+        success: showList
     });
 }
 
@@ -108,6 +154,21 @@ function showOne(data)
 
     getSeries(series);
 }
+
+function findUserData(data) 
+{
+    $.each(data,function(index,user) {
+
+        $('#avatar-img').attr("src","images/" + user.image + "");
+        $('#user-name').html(user.name);
+
+        $('#user-username').val(user.username);
+        $('#modal-user-name').val(user.name);
+        $('#user-password').val(user.password);
+        $('#user-image').val(user.image);
+    });
+}
+
 
 // Creates the more from the author or chooses random books for it
 function getSeries(series) 
@@ -209,6 +270,17 @@ function moveSeriesLeft() {
     });
 }
 
+function formToJSONUser() {  
+
+	return JSON.stringify({ 
+        "username": $('#user-username').val(), 
+        "name": $('#modal-user-name').val(),
+        "password": $('#user-password').val(),
+        "image": $('#user-image').val()
+    });
+    
+}
+
 function formToJSON() {  
 
 	return JSON.stringify({
@@ -225,10 +297,13 @@ function formToJSON() {
     });
     
 }
-
-
 // Creates the main page with all the books
 function showList(data){
+    findUser(username);
+    //$('#avatar-img').attr("src","images/" + avatar_img + ""); 
+    //$('#user-name').html(name);
+
+
     series = [];
     $('#row').append("<div id=\"row\">");
     $.each(data,function(index,book) {
@@ -307,10 +382,27 @@ function hideTable() {
     y.style.display = "none";
 }
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
 // Loads the main page when the DOM is loaded
 $(document).ready(function(){
     clear_page("gallery.html");
     findAll();
+    findUser();
     $('#dataTable').DataTable( {
         ajax: {
             url: rootURL + "books",
